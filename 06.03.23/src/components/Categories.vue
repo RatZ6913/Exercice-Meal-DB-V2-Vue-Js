@@ -1,12 +1,31 @@
 <template>
     <section id="container" class="mt-20">
-    <h1>Bienvenue, sur le site de Repas</h1>
-    <p>Ici, vous trouveriez tous types de repas</p>
+    <h1>La partie Catégories</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque.</p>
+    <!-- <p v-for=" category in meals.strCategory">{{ meals.strCategory}}</p> -->
+    <!-- <p>{{ meals.strCategory}}</p> -->
   </section>
 </template>
 
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const meals = ref('');
+
+async function getFetch() {
+  // for (let i = 0; i < 6; i++) {
+    let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+    let showData = await getData.json();
+    return showData.meals[0];
+  // }
+}
+
+(async () => {
+  meals.value = await getFetch();
+})();
+
+console.log(meals);
 
 </script>
 

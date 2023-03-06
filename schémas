@@ -1,0 +1,47 @@
+Page Accueil (Page Principale) :
+            - 
+
+
+Page Catégories (Affiche toutes les catégories) : 
+
+
+
+Page Catégorie (Affiche les plats de la catégorie):
+
+
+Page Zones (Liste l'ensemble des zones géographiques):
+
+Page Zones (Liste l'ensemble des plats orignaires de la zone):
+
+
+Page Recherche : 
+            - Barre de recherche ((A-Z)(Commence par la lettre sélectionné dans l'ordre alphabétique))
+            - Par mot-clés (Nom du plat ou autres / à voir) ou Barre de recherche pour chaque pages de catégories, avec mots-clé : nom du plat
+
+Page recette (Affiche les détails de la recette) :
+
+
+Page Ingrédients (Accessible depuis les tags de la page recette, qui liste les plats contenant l'ingrédient sélectionné):
+
+Page 404 ( Erreur, pour toute les erreurs ) :
+
+
+
+
+Barre de navigation : 
+  - Catégories (Qui rediriger vers : Page Catégories ) =>>
+      --->>> Page Catégories (Qui affiche, différents catégories, avec quelques plats) =>>>
+            ->>> Page Catégorie (Catégorie: Sélectionné, afficher plats + Barre de recherche(Qui va recherche un nom du plat(Ordre alphabétique))) 
+            ->>> Page Plat ((Plat sélectionné) = Page Recette + Page Ingrédients)
+
+  - Zones (Qui redirigera vers : Page Zones) =>>
+      --->>> Pages Zones (Qui affiche, la liste des différents continents) =>>>
+            ->>> Affiche aléatoirement des plats par pays (3-4 Pays)
+            ->>> Page Zone (Qui affiche les plats par Pays(Avec la Barre de recherche pour pays))
+
+  - Plats ( Affichera une vingtaine de plats, aléatoire ) =>>
+      --->>> Barre de recherche (Nom du plat(A-Z)) 
+            ->>>(If exist) Affiche le nom du plat (Lien) : Qui redirige vers 
+            ->>> Meal.vue (Page recette + Page ingrédients)
+          
+
