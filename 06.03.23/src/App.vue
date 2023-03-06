@@ -9,7 +9,7 @@
       </aside>
       <section id="mainContent">
         <!-- <HomeView v-if="checkUrlPath(checkPathUrl)" :display="false" /> -->
-        <Categories v-if="checkUrlPath(checkPathUrl) "/>
+        <Categories />
         <!-- <Location /> -->
         <!-- <Meals /> -->
       </section>
