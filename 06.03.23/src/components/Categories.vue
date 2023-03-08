@@ -9,25 +9,18 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { fetchProduct } from '../services/meals.service';
 
-// const meals = ref();
+async function fetchAndLogMeals() {
+  try {
+    const mealsCategory = await fetchProduct();
+    console.log(mealsCategory.meals[0].strCategory);
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-// const categories = [];
-
-// async function getFetch() {
-//   let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-//   let showData = await getData.json();
-//   return showData.meals[0].strCategory;
-// }
-
-// (async () => {
-//   for (let index = 0; index < 15; index++) {
-//     meals.value = await getFetch();
-//   }
-// })();
-
-
+fetchAndLogMeals();
 
 
 </script>
@@ -46,3 +39,24 @@ import { ref } from 'vue';
   }
 }
 </style>
+
+
+
+
+
+
+<!-- // const meals = ref();
+
+// const categories = [];
+
+// async function getFetch() {
+//   let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+//   let showData = await getData.json();
+//   return showData.meals[0].strCategory;
+// }
+
+// (async () => {
+//   for (let index = 0; index < 15; index++) {
+//     meals.value = await getFetch();
+//   }
+// })(); -->
