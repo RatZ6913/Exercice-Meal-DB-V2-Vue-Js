@@ -6,16 +6,16 @@
       </div>
       <ul class="d-flex">
         <li class="nav-menu m-10" 
-          :class="{ page === 'HomeView' }"
+          :class="{ active: page === 'HomeView' }"
           @click="emit('navigate', 'HomeView')">Home</li>
         <li class="nav-menu m-10" 
-          :class="{ page === 'Categories' }"
+          :class="{ active: page === 'Categories' }"
           @click="emit('navigate', 'Categories')">Categories</li>
         <li class="nav-menu m-10" 
-          :class="{ page === 'Zones' }"
+          :class="{ active: page === 'Zones' }"
           @click="emit('navigate', 'Zones')">Zones</li>
         <li class="nav-menu m-10" 
-          :class="{ page === 'Meals' }"
+          :class="{ active: page === 'Meals' }"
           @click="emit('navigate', 'Meals')">Meals</li>
       </ul>
     </nav>
