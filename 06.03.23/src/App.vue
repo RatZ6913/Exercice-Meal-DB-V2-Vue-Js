@@ -8,10 +8,11 @@
         </section>
       </aside>
       <section id="mainContent">
-        <!-- <HomeView v-if="checkUrlPath(checkPathUrl)" :display="false" /> -->
+        <Component :is="components[selectedComponent]" /> 
+        <!-- <HomeView />
         <Categories />
-        <!-- <Location /> -->
-        <!-- <Meals /> -->
+        <Zones />
+        <Meals /> -->
       </section>
     </main>
     <FooterView />
@@ -20,23 +21,37 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { Component as C } from 'vue';
 import HeaderView from './views/HeaderView.vue';
 import FooterView from './views/FooterView.vue';
 import HomeView from './views/HomeView.vue';
 import SearchMeals from './components/SearchMeals.vue';
 import Categories from './components/Categories.vue';
+import Meals from './components/Meals.vue';
+import Zones from './components/Zones.vue';
 
-const urlPathName = window.location.pathname;
-
-const checkPathUrl = ref(urlPathName);
-
-function checkUrlPath(urlPathName: string): boolean {
-  if(urlPathName) {
-    return true;
-  } else {
-    return false;
-  }
+const components : { [s: string]: C } = {
+  HomeView,
+  Categories,
+  Zones,
+  Meals
 }
+
+const selectedComponent = ref('HomeView');
+console.log(components);
+
+
+// const urlPathName = window.location.pathname;
+
+// const checkPathUrl = ref(urlPathName);
+
+// function checkUrlPath(urlPathName: string): boolean {
+//   if(urlPathName) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 
 </script>

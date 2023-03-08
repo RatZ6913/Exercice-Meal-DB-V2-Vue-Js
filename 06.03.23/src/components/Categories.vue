@@ -3,7 +3,7 @@
     <h1>La partie Catégories</h1>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque.</p>
     <!-- <p v-for=" category in meals.strCategory">{{ meals.strCategory}}</p> -->
-    <p v-for="meal of meals" :key="meal" class="m-10">{{ meal }}</p>
+    <!-- <p v-for="meal of meals" :key="meal" class="m-10">{{ meal }}</p> -->
   </section>
 </template>
 
@@ -11,21 +11,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const meals = ref();
+// const meals = ref();
 
-const categories = [];
+// const categories = [];
 
-async function getFetch() {
-  let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-  let showData = await getData.json();
-  return showData.meals[0].strCategory;
-}
+// async function getFetch() {
+//   let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+//   let showData = await getData.json();
+//   return showData.meals[0].strCategory;
+// }
 
-(async () => {
-  for (let index = 0; index < 15; index++) {
-    meals.value = await getFetch();
-  }
-})();
+// (async () => {
+//   for (let index = 0; index < 15; index++) {
+//     meals.value = await getFetch();
+//   }
+// })();
 
 
 

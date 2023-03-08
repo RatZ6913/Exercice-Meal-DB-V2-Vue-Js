@@ -6,9 +6,9 @@
       </div>
       <ul class="d-flex">
         <li class="m-10"><a href="/">Home</a></li>
-        <li class="m-10"><a href="./categories">Categories</a></li>
-        <li class="m-10"><a href="./location">Location</a></li>
-        <li class="m-10"><a href="./meals">Meals</a></li>
+        <li class="m-10"><a href="/">Categories</a></li>
+        <li class="m-10"><a href="/">Location</a></li>
+        <li class="m-10"><a href="/">Meals</a></li>
       </ul>
     </nav>
   </header>
