@@ -5,19 +5,40 @@
         <img class="ml-20" src="@/assets/images/logo.jpg" alt="Logo">
       </div>
       <ul class="d-flex">
-        <li class="m-10"><a href="/">Home</a></li>
-        <li class="m-10"><a href="/">Categories</a></li>
-        <li class="m-10"><a href="/">Location</a></li>
-        <li class="m-10"><a href="/">Meals</a></li>
+        <li class="nav-menu m-10" 
+          :class="{ page === 'HomeView' }"
+          @click="emit('navigate', 'HomeView')">Home</li>
+        <li class="nav-menu m-10" 
+          :class="{ page === 'Categories' }"
+          @click="emit('navigate', 'Categories')">Categories</li>
+        <li class="nav-menu m-10" 
+          :class="{ page === 'Zones' }"
+          @click="emit('navigate', 'Zones')">Zones</li>
+        <li class="nav-menu m-10" 
+          :class="{ page === 'Meals' }"
+          @click="emit('navigate', 'Meals')">Meals</li>
       </ul>
     </nav>
   </header>
 </template>
 
-
-
 <script setup lang="ts">
+import type { Page } from '@/interfaces/type';
+import { defineEmits, reactive } from 'vue';
 
+const state = reactive<{
+    open: boolean;
+}>({
+    open: false
+});
+
+defineProps<{
+    page: Page;
+}>();
+
+const emit = defineEmits<{
+    (e: 'navigate', page: Page): void;
+}>()
 
 </script>
 
@@ -35,6 +56,11 @@ nav {
 
   a {
     color: var(--gray-1);
+  }
+
+  .nav-menu {
+    color: white;
+    cursor: pointer;
   }
 }
 </style>

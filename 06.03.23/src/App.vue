@@ -1,6 +1,6 @@
 <template>
   <body>
-    <HeaderView />
+    <HeaderView @navigate="pageNavigate" :page="state.page" />
     <main>
       <aside>
         <section id="searchContainer">
@@ -8,11 +8,7 @@
         </section>
       </aside>
       <section id="mainContent">
-        <Component :is="components[selectedComponent]" /> 
-        <!-- <HomeView />
-        <Categories />
-        <Zones />
-        <Meals /> -->
+        <Component :is="pages[state.page]" /> 
       </section>
     </main>
     <FooterView />
@@ -20,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive } from 'vue';
 import type { Component as C } from 'vue';
 import HeaderView from './views/HeaderView.vue';
 import FooterView from './views/FooterView.vue';
@@ -29,30 +25,24 @@ import SearchMeals from './components/SearchMeals.vue';
 import Categories from './components/Categories.vue';
 import Meals from './components/Meals.vue';
 import Zones from './components/Zones.vue';
+import type { Page } from './interfaces/type';
 
-const components : { [s: string]: C } = {
+const state = reactive<{
+  page: Page;
+}>({
+  page: 'HomeView'
+})
+
+const pages: {[s: string]: C;} = {
   HomeView,
   Categories,
   Zones,
   Meals
 }
 
-const selectedComponent = ref('HomeView');
-console.log(components);
-
-
-// const urlPathName = window.location.pathname;
-
-// const checkPathUrl = ref(urlPathName);
-
-// function checkUrlPath(urlPathName: string): boolean {
-//   if(urlPathName) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
+function pageNavigate(page: Page): void {
+  state.page = page;
+}
 
 </script>
 
