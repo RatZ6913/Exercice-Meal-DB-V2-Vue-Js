@@ -47,10 +47,14 @@
     }
   }
 
-  .float-enter-from,
   .text-enter-from,
   .title-enter-from {
     translate: -10px;
+    opacity: 0;
+  }
+
+  .float-enter-from {
+    transform: translateX(-20%);
     opacity: 0;
   }
 
@@ -58,6 +62,10 @@
   .title-enter-to {
     translate: 0px;
     opacity: 1;
+  }
+
+  .float-enter-to {
+    transform: translateX(0%);
   }
 
   .float-enter-active,
