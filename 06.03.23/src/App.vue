@@ -60,3 +60,4 @@ function pageNavigate(page: Page): void {
   display: flex;
 }
 </style>
+ 

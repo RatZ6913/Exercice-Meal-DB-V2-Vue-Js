@@ -9,18 +9,39 @@
 
 
 <script setup lang="ts">
-import { fetchProduct } from '../services/meals.service';
+import { reactive } from 'vue';
+import { fetchMealsCategory } from '../services/meals.service';
 
-async function fetchAndLogMeals() {
+// async function getMealsCategory() {
+//   try {
+//     const mealsCategory = await fetchMealsCategory();
+//     const mealsCategories = await mealsCategory.meals;
+//     console.log(mealsCategories);
+
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+
+// getMealsCategory();
+
+
+const state = reactive({
+  category: [],
+  data: []
+})
+
+
+const getMealsCategory = (async () => {
   try {
-    const mealsCategory = await fetchProduct();
-    console.log(mealsCategory.meals[0].strCategory);
-  } catch (e) {
-    console.error(e);
+    state.data = await fetchMealsCategory();
+  } catch (error) {
+    console.log(error);
   }
-}
+  return;
+})();
 
-fetchAndLogMeals();
+
 
 
 </script>

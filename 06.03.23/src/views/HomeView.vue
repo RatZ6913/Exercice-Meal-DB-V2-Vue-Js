@@ -1,5 +1,5 @@
 <template>
-  <section id="container" class="mt-20 d-flex flex-column align-items-center">
+    <section id="container" class="mt-20 d-flex flex-column align-items-center">
     <Transition appear name="title">
       <h1>Bienvenue, sur <strong>Meals</strong></h1>
     </Transition>
@@ -23,6 +23,12 @@
 #container {
   background-color: var(--gray-1);
   width: 100%;
+  margin: auto;
+  animation: colorBg 0.5s linear;
+
+  @keyframes colorBg {
+     from { background-color: var(--gray-3); width: 0%; opacity: 0;}
+  }
 
   h1 {
     color: var(--primary-1);
