@@ -3,11 +3,10 @@
     <h1>La partie Catégories</h1>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque.</p>
 
-    <p>{{ state.category.meals[0].strCategory }}</p>
+    <button>{{ state.category.meals[0].strCategory }}</button>
     <!-- <p>{{ state.category.meals }}</p>  -->
   </section>
 </template>
-
 
 <script setup lang="ts">
 import { reactive } from 'vue';
