@@ -2,8 +2,9 @@
   <section id="container" class="mt-20">
     <h1>La partie Catégories</h1>
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque.</p>
-    <!-- <p v-for=" category in meals.strCategory">{{ meals.strCategory}}</p> -->
-    <!-- <p v-for="meal of meals" :key="meal" class="m-10">{{ meal }}</p> -->
+
+    <p>{{ state.category.meals[0].strCategory }}</p>
+    <!-- <p>{{ state.category.meals }}</p>  -->
   </section>
 </template>
 
@@ -12,37 +13,18 @@
 import { reactive } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 
-// async function getMealsCategory() {
-//   try {
-//     const mealsCategory = await fetchMealsCategory();
-//     const mealsCategories = await mealsCategory.meals;
-//     console.log(mealsCategories);
-
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }
-
-// getMealsCategory();
-
-
 const state = reactive({
   category: [],
-  data: []
 })
-
 
 const getMealsCategory = (async () => {
   try {
-    state.data = await fetchMealsCategory();
+    state.category = await fetchMealsCategory();
   } catch (error) {
     console.log(error);
   }
   return;
 })();
-
-
-
 
 </script>
 
