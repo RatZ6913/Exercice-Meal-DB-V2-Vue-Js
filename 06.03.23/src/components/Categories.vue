@@ -1,10 +1,14 @@
 <template>
   <section id="container" class="mt-20">
-    <h1>La partie Catégories</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque.</p>
+    <h2>Voici les différents catégories : </h2>
+    <p>Choisissez le type de plat qui vous convient</p>
 
-    <button>{{ state.category.meals[0].strCategory }}</button>
-    <!-- <p>{{ state.category.meals }}</p>  -->
+    <div id="box-cat">
+      <template v-for="category in state.category.meals">
+        <button class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
+      </template>
+    </div>
+
   </section>
 </template>
 
@@ -12,11 +16,11 @@
 import { reactive } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 
-const state = reactive({
+const state = reactive<any>({
   category: [],
 })
 
-const getMealsCategory = (async () => {
+const fetchCat = (async () => {
   try {
     state.category = await fetchMealsCategory();
   } catch (error) {
@@ -36,8 +40,20 @@ const getMealsCategory = (async () => {
   background-color: var(--gray-1);
   width: 100%;
 
-  h1 {
+  h2 {
     color: brown;
+    font-size: 24px;
+  }
+}
+
+#box-cat {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  background-color: var(--gray-2);
+  .btn-cat {
+    width: 250px;
+    box-shadow: 1px 2px 1px var(--gray-1);
   }
 }
 </style>

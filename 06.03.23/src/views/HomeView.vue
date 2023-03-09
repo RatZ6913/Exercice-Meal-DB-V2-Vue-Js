@@ -24,12 +24,7 @@
   background-color: var(--gray-1);
   width: 100%;
   margin: auto;
-  animation: colorBg 0.5s linear;
-
-  @keyframes colorBg {
-     from { background-color: var(--gray-3); width: 0%; opacity: 0;}
-  }
-
+ 
   h1 {
     color: var(--primary-1);
     font-size: 32px;
@@ -55,12 +50,12 @@
 
   .text-enter-from,
   .title-enter-from {
-    translate: -10px;
+    translate: -40%;
     opacity: 0;
   }
 
   .float-enter-from {
-    transform: translateX(-20%);
+    transform: translateX(-40%);
     opacity: 0;
   }
 
@@ -81,10 +76,10 @@
   }
 
   .text-enter-active {
-    transition-delay: 1.5s;
+    transition-delay: 1s;
   }
   .float-enter-active {
-    transition-delay: 2.5s;
+    transition-delay: 2s;
   }
 }
 </style>
