@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="mt-10" type="search" placeholder="Rechercher">
+    <input class="mt-10" type="search" placeholder="Rechercher un plat">
   </div>
 </template>
 

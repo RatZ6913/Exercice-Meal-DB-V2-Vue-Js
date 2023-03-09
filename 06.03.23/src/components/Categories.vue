@@ -17,7 +17,7 @@ import { reactive } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 
 const state = reactive<any>({
-  category: [],
+  category: []
 })
 
 const fetchCat = (async () => {
@@ -27,7 +27,8 @@ const fetchCat = (async () => {
     console.log(error);
   }
   return;
-})();
+})()
+
 
 </script>
 
@@ -48,6 +49,7 @@ const fetchCat = (async () => {
 
 #box-cat {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 50%;
   background-color: var(--gray-2);

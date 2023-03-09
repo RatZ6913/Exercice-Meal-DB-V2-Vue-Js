@@ -21,7 +21,7 @@ const state = reactive<any>({
   zones: [],
 })
 
-const fetch = (async () => {
+const fetchZones = (async () => {
   try {
     state.zones = await fetchMealsZones();
   } catch (error) {
@@ -50,6 +50,7 @@ console.log(state);
 
   #box-cat {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     width: 50%;
     background-color: var(--gray-2);
