@@ -30,11 +30,7 @@ const fetchZones = (async () => {
   return;
 })();
 
-console.log(state);
-
-
 </script>
-
 
 <style lang="scss" scoped>
 #container {

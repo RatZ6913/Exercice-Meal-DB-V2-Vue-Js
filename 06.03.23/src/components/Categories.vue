@@ -5,7 +5,7 @@
 
     <div id="box-cat">
       <template v-for="category in state.category.meals">
-        <button class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
+          <button class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
       </template>
     </div>
 
@@ -53,6 +53,7 @@ const fetchCat = (async () => {
   flex-wrap: wrap;
   width: 50%;
   background-color: var(--gray-2);
+
   .btn-cat {
     width: 250px;
     box-shadow: 1px 2px 1px var(--gray-1);
