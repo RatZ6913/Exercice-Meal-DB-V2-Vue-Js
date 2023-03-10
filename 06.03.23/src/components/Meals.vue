@@ -9,9 +9,13 @@
         <div class="box-by-letters m-20 d-flex justify-content-center flex-column align-items-center">
           <h3>{{ letter }}</h3>
           <ul>
-            <template v-for="mealsByLetter in state.mealsByLetter.meals">
-              <template v-if="mealsByLetter.strMeal.charAt(0).toLowerCase() === letter">
-                <li class="nameMeals">{{ mealsByLetter.strMeal }}</li>
+            <template v-for="getMealsByLetter in state.results">
+              <template v-for="mealByletter in getMealsByLetter">
+                <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
+                  <li class="nameMeals">{{ mealByletter.strMeal }}
+                    <small class="small-cat">({{ mealByletter.strCategory }})</small>
+                  </li>
+                </template>
               </template>
             </template>
           </ul>
@@ -35,17 +39,14 @@ const state = reactive<any>({
 
 const fetchMealsByLetter = (async () => {
   try {
-    // for (const letter of state.letters) {
-      state.mealsByLetter = await fetchMealsByLetters('a');
-      // state.results.push(state.mealsByLetter)
-    // }
+    for (const letter of state.letters) {
+      state.mealsByLetter = await fetchMealsByLetters(letter);
+      state.results.push(state.mealsByLetter.meals);
+    }
   } catch (error) {
     console.log(error);
   }
 })();
-
-console.log(state.mealsByLetter);
-
 
 
 </script>
@@ -71,11 +72,17 @@ console.log(state.mealsByLetter);
   }
 
   .nameMeals {
+    text-align: center;
     color: var(--primary-1);
     cursor: pointer;
 
     &:hover {
       text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .small-cat {
+      color: var(--gray-3);
     }
   }
 }
