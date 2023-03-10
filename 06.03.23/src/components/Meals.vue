@@ -49,7 +49,6 @@ const fetchMealsByLetter = (async () => {
   }
 })();
 
-
 </script>
 
 <style lang="scss" scoped>

@@ -60,24 +60,3 @@ const fetchCat = (async () => {
   }
 }
 </style>
-
-
-
-
-
-
-<!-- // const meals = ref();
-
-// const categories = [];
-
-// async function getFetch() {
-//   let getData = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-//   let showData = await getData.json();
-//   return showData.meals[0].strCategory;
-// }
-
-// (async () => {
-//   for (let index = 0; index < 15; index++) {
-//     meals.value = await getFetch();
-//   }
-// })(); -->

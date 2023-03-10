@@ -27,8 +27,6 @@ import Meals from './components/Meals.vue';
 import Zones from './components/Zones.vue';
 import type { Page } from './interfaces/type';
 
-
-
 const state = reactive<{
   page: Page;
 }>({
