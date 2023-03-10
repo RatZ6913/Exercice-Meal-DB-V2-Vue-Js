@@ -2,13 +2,13 @@
   <body>
     <HeaderView @navigate="pageNavigate" :page="state.page" />
     <main>
-      <aside>
+      <aside v-if="state.page !== 'Meals'">
         <section id="searchContainer">
           <SearchMeals />
         </section>
       </aside>
       <section id="mainContent">
-        <Component :is="pages[state.page]" /> 
+        <Component :is="pages[state.page]"/> 
       </section>
     </main>
     <FooterView />

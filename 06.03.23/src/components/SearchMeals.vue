@@ -1,10 +1,10 @@
 <template>
   <section id="container" class="d-flex flex-column">
-    <input v-model="state.search" @input="searchMeals" class="mt-10" placeholder="Rechercher un plat">
+    <input v-model="state.search" class="mt-10" placeholder="Rechercher un plat">
     <div id="content-meals" class="m-10">
       <template v-for="searchMeal in state.meals">
         <template v-for="showMeal in searchMeal">
-          <li>{{ showMeal.strMeal }}</li>
+          <small>{{ showMeal.strMeal }}</small>
         </template>
       </template>
     </div>
@@ -17,8 +17,7 @@ import { fetchMealsByLetters } from '../services/meals.service';
 
 const state = reactive<any>({
   search: null,
-  meals: [],
-  searchMeals: String
+  meals: []
 })
 
 const fetchMealsByLetter = (async () => { 
@@ -29,8 +28,8 @@ const fetchMealsByLetter = (async () => {
   }
 })();
 
-watch(() => state.search, async (searchMeals) => {
-  let meals = await fetchMealsByLetters(searchMeals);
+watch(() => state.search, async (letters) => {
+  let meals = await fetchMealsByLetters(letters);
   state.meals = meals;
 });
 
@@ -44,8 +43,9 @@ watch(() => state.search, async (searchMeals) => {
   padding: 10px 0;
   width: 90%;
 
-  li {
+  small {
     list-style: none;
+    font-size: 14px;
     margin-left: 10px;
     color: var(--primary-1);
     &:hover {
