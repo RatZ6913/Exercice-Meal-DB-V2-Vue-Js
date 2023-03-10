@@ -1,15 +1,58 @@
 <template>
-  <div>
-    <input class="mt-10" type="search" placeholder="Rechercher un plat">
-  </div>
+  <section id="container" class="d-flex flex-column">
+    <input v-model="state.search" @input="searchMeals" class="mt-10" placeholder="Rechercher un plat">
+    <div id="content-meals" class="m-10">
+      <template v-for="searchMeal in state.meals">
+        <template v-for="showMeal in searchMeal">
+          <li>{{ showMeal.strMeal }}</li>
+        </template>
+      </template>
+    </div>
+  </section>
 </template>
 
-
-
 <script setup lang="ts">
+import { reactive, watch } from 'vue';
+import { fetchMealsByLetters } from '../services/meals.service';
+
+const state = reactive<any>({
+  search: null,
+  meals: [],
+  searchMeals: String
+})
+
+const fetchMealsByLetter = (async () => { 
+  try {
+    state.meals = await fetchMealsByLetters(state.search);
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
+watch(() => state.search, async (searchMeals) => {
+  let meals = await fetchMealsByLetters(searchMeals);
+  state.meals = meals;
+});
 
 </script>
 
 <style lang="scss" scoped>
+#content-meals {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px 0;
+  width: 90%;
 
+  li {
+    list-style: none;
+    margin-left: 10px;
+    color: var(--primary-1);
+    &:hover {
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
 </style>

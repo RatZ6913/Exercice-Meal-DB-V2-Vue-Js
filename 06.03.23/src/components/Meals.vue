@@ -12,7 +12,8 @@
             <template v-for="getMealsByLetter in state.results">
               <template v-for="mealByletter in getMealsByLetter">
                 <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
-                  <li class="nameMeals">{{ mealByletter.strMeal }}
+                  <li class="nameMeals">
+                    {{ mealByletter.strMeal }}
                     <small class="small-cat">({{ mealByletter.strCategory }})</small>
                   </li>
                 </template>
