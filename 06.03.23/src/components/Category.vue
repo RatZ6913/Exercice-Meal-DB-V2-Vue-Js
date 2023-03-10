@@ -1,10 +1,10 @@
 <template>
   <section id="category" class="mt-20">
     <template v-for=" nameCat in state.meals">
-      <h2>Voici la liste des plats de {{ stateDatas.nameCat }} :</h2>
+      <h2>Voici la liste des plats de {{ state.stateDatas.nameCat }} :</h2>
       <template v-for=" mealsData in nameCat">
         <div class="box-meals-cat">
-          <img class="imgMeals" :src="mealsData.strMealThumb" alt="">
+          <img class="imgMeals" :src="mealsData.strMealThumb">
           <span class="mt-20">{{ mealsData.strMeal }}</span>
         </div>
       </template>
@@ -21,6 +21,7 @@ const stateDatas = inject<CategoriesInterface>('state')!;
 
 const state = reactive<any>({
   meals: [],
+  stateDatas: stateDatas
 })
 
 const fetchCat = (async () => {

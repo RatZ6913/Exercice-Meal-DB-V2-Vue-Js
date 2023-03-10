@@ -5,7 +5,7 @@
 
     <div id="box-cat">
       <template v-for="category in state.category.meals">
-          <button @click="state.display = true; state.nameCat = category.strCategory;"
+          <button @click="state.display = true; state.nameCat = category.strCategory "
           class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
       </template>
     </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, reactive, ref, watch, inject } from 'vue';
+import { provide, reactive, ref, watch, watchEffect } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 import Category from './Category.vue';
 
@@ -31,14 +31,18 @@ const state = reactive<any>({
   nameCat: ref()
 })
 
-const fetchCat = (async () => {
+const fetchCat = async () => {
   try {
     state.category = await fetchMealsCategory();
   } catch (error) {
     console.log(error);
   }
-  return;
-})()
+};
+
+watchEffect(() => {
+  fetchCat();
+  state.nameCat;
+});
 
 provide('state', state);
 
