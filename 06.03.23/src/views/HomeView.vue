@@ -63,16 +63,22 @@ async function random() {
     background-color: var(--gray-2);
     color: var(--primary-1);
     margin-bottom: 20px;
-    box-shadow: 3px -2px 2px -2px var(--gray-3);
+    box-shadow: 3px 2px 1px 1px var(--gray-3);
+    border-radius: 15px;
+
+    &:hover {
+      box-shadow: 3px 2px 1px 1px var(--primary-1);
+    }
 
     span {
       color: var(--gray-3);
     }
-    
+
     .btn {
       margin: auto;
       width: 50%;
       margin-top: 20px;
+
       &:hover {
         background-color: var(--gray-3);
         color: var(--gray-1);

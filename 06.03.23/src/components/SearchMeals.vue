@@ -17,7 +17,7 @@ import { fetchMealsByLetters } from '../services/meals.service';
 
 const state = reactive<any>({
   search: null,
-  meals: []
+  meals: [],
 })
 
 const fetchMealsByLetter = (async () => { 
@@ -39,7 +39,6 @@ watch(() => state.search, async (letters) => {
 #content-meals {
   display: flex;
   flex-direction: column;
-  background-color: white;
   padding: 10px 0;
   width: 90%;
 

@@ -5,19 +5,30 @@
 
     <div id="box-cat">
       <template v-for="category in state.category.meals">
-          <button class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
+          <button @click="state.display = true; state.nameCat = category.strCategory;"
+          class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
       </template>
     </div>
 
+    <div>
+      <Category v-if="state.display"/>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { provide, reactive, ref, watch, inject } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
+import Category from './Category.vue';
+
+export  interface CategoriesInterface {
+  nameCat: string;
+}
 
 const state = reactive<any>({
-  category: []
+  category: [],
+  display: false,
+  nameCat: ref()
 })
 
 const fetchCat = (async () => {
@@ -29,9 +40,9 @@ const fetchCat = (async () => {
   return;
 })()
 
+provide('state', state);
 
 </script>
-
 
 <style lang="scss" scoped>
 #container {
