@@ -1,5 +1,5 @@
 <template>
-    <section id="container" class="mt-20 d-flex flex-column align-items-center">
+  <section id="container" class="mt-20 d-flex flex-column align-items-center">
     <Transition appear name="title">
       <h1>Bienvenue, sur <strong>Meals</strong></h1>
     </Transition>
@@ -14,20 +14,75 @@
         <p>Alors, venez visiter nos recettes !</p>
       </div>
     </Transition>
+
+    <div class="box-random mt-20 p-20">
+      <h2>Générér un plat aléatoire</h2>
+      <button @click="random" class="btn">Cliquez ici</button>
+      <template v-for="randomMeal in state.meals.meals">
+        <span class="mt-20">Plat : </span>
+        <p>{{ randomMeal.strMeal }}</p>
+        <img :src="randomMeal.strMealThumb">
+      </template>
+    </div>
+
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { fetchRandomMeal } from '../services/meals.service';
+import { reactive } from 'vue';
+
+const state = reactive<any>({
+  meals: [],
+  random: false
+})
+
+async function random() {
+  state.meals = await fetchRandomMeal();
+  state.random = true;
+}
+
+</script>
 
 <style scoped lang="scss">
 #container {
   background-color: var(--gray-1);
   width: 100%;
   margin: auto;
- 
+
   h1 {
     color: var(--primary-1);
     font-size: 32px;
+  }
+
+  .box-random {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: var(--gray-2);
+    color: var(--primary-1);
+    margin-bottom: 20px;
+    box-shadow: 3px -2px 2px -2px var(--gray-3);
+
+    span {
+      color: var(--gray-3);
+    }
+    
+    .btn {
+      margin: auto;
+      width: 50%;
+      margin-top: 20px;
+      &:hover {
+        background-color: var(--gray-3);
+        color: var(--gray-1);
+      }
+    }
+
+    img {
+      width: 30rem;
+      height: 30rem;
+    }
   }
 
   #content {
@@ -78,6 +133,7 @@
   .text-enter-active {
     transition-delay: 1s;
   }
+
   .float-enter-active {
     transition-delay: 2s;
   }
