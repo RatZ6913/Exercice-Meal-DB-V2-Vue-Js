@@ -30,6 +30,7 @@ const state = reactive<any>({
 watchEffect(
   async () => {
     state.zones = await fetchZones();
+    state.display = true;
   }
 );
 
@@ -46,7 +47,7 @@ provide('statezone', state);
   width: 100%;
 
   h1 {
-    color: brown;
+    color: var(--primary-1);
     font-size: 26px;
   }
 

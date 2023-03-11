@@ -29,7 +29,7 @@ watch(
   () => stateDatas.nameCat,
   async (newValue) => {
     state.meals = await fetchByCategory(newValue);
-    state.random = true;
+    state.display = true;
   }
 );
 
@@ -67,12 +67,18 @@ watch(
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 30%;
+    min-width: 250px;
+    min-height: 250px;
     margin: 20px auto;
     padding: 20px;
-    background-color: var(--gray-2);
-    color: var(--primary-1);
+    background-color: #f5deb39f;
+    color: var(--danger-2);
     font-weight: 700;
+
+    img {
+      padding: 10px;
+      background-color: white;
+    }
   }
 }
 </style>
