@@ -31,16 +31,8 @@ const state = reactive<any>({
   nameCat: ref()
 })
 
-const fetchCat = async () => {
-  try {
-    state.category = await fetchMealsCategory();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-watchEffect(() => {
-  fetchCat();
+watchEffect(async () => {
+  state.category = await fetchMealsCategory();
 });
 
 provide('state', state);

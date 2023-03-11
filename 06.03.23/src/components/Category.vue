@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, reactive, watchEffect } from 'vue';
+import { inject, reactive, watch } from 'vue';
 import { fetchByCategory } from '../services/meals.service';
 import type { CategoriesInterface } from './Categories.vue';
 
@@ -24,14 +24,13 @@ const state = reactive<any>({
   stateDatas: stateDatas
 })
 
-async function fetchMeal() {
-  state.meals = await fetchByCategory(stateDatas.nameCat);
-  state.random = true;
-}
-
-watchEffect(() => {
-  fetchMeal();
-});
+watch(
+  () => stateDatas.nameCat,
+  async (newValue) => {
+    state.meals = await fetchByCategory(newValue);
+    state.random = true;
+  }
+);
 
 </script>
 
