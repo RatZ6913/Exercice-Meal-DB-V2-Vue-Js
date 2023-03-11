@@ -1,8 +1,8 @@
 <template>
   <section id="category" class="mt-20">
-    <template v-for=" nameCat in state.meals">
+    <template v-for="nameCat in state.meals">
       <h2>Voici la liste des plats de {{ state.stateDatas.nameCat }} :</h2>
-      <template v-for=" mealsData in nameCat">
+      <template v-for="mealsData in nameCat">
         <div class="box-meals-cat">
           <img class="imgMeals" :src="mealsData.strMealThumb">
           <span class="mt-20">{{ mealsData.strMeal }}</span>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, reactive } from 'vue';
+import { inject, reactive, watchEffect } from 'vue';
 import { fetchByCategory } from '../services/meals.service';
 import type { CategoriesInterface } from './Categories.vue';
 
@@ -24,14 +24,14 @@ const state = reactive<any>({
   stateDatas: stateDatas
 })
 
-const fetchCat = (async () => {
-  try {
-    state.meals = await fetchByCategory(stateDatas.nameCat);
-  } catch (error) {
-    console.log(error);
-  }
-  return;
-})();
+async function fetchMeal() {
+  state.meals = await fetchByCategory(stateDatas.nameCat);
+  state.random = true;
+}
+
+watchEffect(() => {
+  fetchMeal();
+});
 
 </script>
 

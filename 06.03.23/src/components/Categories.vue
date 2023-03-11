@@ -26,8 +26,8 @@ export  interface CategoriesInterface {
 }
 
 const state = reactive<any>({
-  category: [],
   display: false,
+  category: [],
   nameCat: ref()
 })
 
@@ -41,7 +41,6 @@ const fetchCat = async () => {
 
 watchEffect(() => {
   fetchCat();
-  state.nameCat;
 });
 
 provide('state', state);
