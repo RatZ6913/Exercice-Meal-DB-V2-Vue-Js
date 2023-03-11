@@ -5,44 +5,36 @@
 
     <div id="box-cat">
       <template v-for="zone in state.zones.meals">
-        <button @click="state.display = true" v-if="zone.strArea === 'Unknown' === false" 
-        class="btn-cat m-10 btn btn-danger">{{ zone.strArea }}</button>
+        <button @click="state.display = true; state.nameZone = zone.strArea" class="btn-cat m-10 btn btn-danger">{{
+          zone.strArea }}</button>
       </template>
     </div>
 
     <div>
-      <Zone v-if="state.display"/>
+      <Zone v-if="state.display" />
     </div>
   </section>
 </template>
 
 
 <script setup lang="ts">
-import { fetchMealsByCountry } from '@/services/meals.service';
-import { reactive } from 'vue';
+import { fetchZones } from '@/services/meals.service';
+import { provide, reactive, watchEffect } from 'vue';
 import Zone from './Zone.vue';
 
 const state = reactive<any>({
+  display: false,
   zones: [],
   nameZone: String,
-  display: false
 })
 
+watchEffect(
+  async () => {
+    state.zones = await fetchZones();
+  }
+);
 
-// const fetchZones = (async () => {
-//   try {
-//     state.zones = await fetchMealsZones();
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   return;
-// })();
-
-// watch(
-//   async () => {
-
-//   }
-//   )
+provide('statezone', state);
 
 </script>
 
@@ -68,6 +60,27 @@ const state = reactive<any>({
     .btn-cat {
       width: 250px;
       box-shadow: 1px 2px 1px var(--gray-1);
+
+      &:nth-child(odd) {
+        color: var(--gray-1);
+        background-color: var(--primary-1);
+      }
+
+      &:nth-child(even) {
+        color: var(--gray-1);
+        background-color: var(--primary-2);
+      }
+
+      &:nth-child(26n) {
+        background-color: var(--gray-1);
+        color: var(--danger-1);
+        border: 1px solid red;
+      }
+
+      &:hover {
+        color: var(--gray-1);
+        background-color: var(--danger-1);
+      }
     }
   }
 }

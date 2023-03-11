@@ -5,7 +5,7 @@ export async function fetchMealsCategory(): Promise<any> {
   return meals;
 }
 
-export async function fetchMealsZones(): Promise<any> {
+export async function fetchZones(): Promise<any> {
   const meals = await (
     await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
   ).json();

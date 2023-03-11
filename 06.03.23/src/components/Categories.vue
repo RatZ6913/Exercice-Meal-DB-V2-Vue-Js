@@ -35,10 +35,10 @@ watchEffect(
   async () => {
     state.category = await fetchMealsCategory();
     state.display = true;
-  },
+  }
 ); 
 
-provide('state', state);
+provide('stateCategories', state);
 
 </script>
 
