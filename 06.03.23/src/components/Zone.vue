@@ -1,7 +1,11 @@
 <template>
-  <section id="zone">
-    <h2>ICI LA PAGE LES PLATS PAR ZONE GEOGRAPHIQUE</h2>
-    <p>{{ state }}</p>
+  <section id="zone" class="mt-20">
+    <h2>Voici les plats du pays :
+      <Transition appear name="country">
+        <span class="country">{{ state.stateZones.nameZone }}</span>
+      </Transition>
+    </h2>
+    <p></p>
   </section>
 </template>
 
@@ -10,9 +14,6 @@ import { inject, reactive } from 'vue';
 
 const stateZones = inject('statezone');
 
-
-
-// const stateZones = inject
 const state = reactive<any>({
   meals: [],
   stateZones: stateZones
@@ -24,4 +25,10 @@ console.log(stateZones);
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.country {
+  color: var(--primary-2);
+}
+
+</style>

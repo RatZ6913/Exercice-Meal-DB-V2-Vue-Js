@@ -24,7 +24,6 @@
         <img :src="randomMeal.strMealThumb">
       </template>
     </div>
-
   </section>
 </template>
 

@@ -39,7 +39,6 @@ watchEffect(
 ); 
 
 provide('stateCategories', state);
-
 </script>
 
 <style lang="scss" scoped>

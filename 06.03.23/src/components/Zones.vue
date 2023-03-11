@@ -47,6 +47,7 @@ provide('statezone', state);
 
   h1 {
     color: brown;
+    font-size: 26px;
   }
 
   #box-cat {

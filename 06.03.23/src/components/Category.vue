@@ -1,7 +1,8 @@
 <template>
   <section id="category" class="mt-20">
     <template v-for="nameCat in state.meals">
-      <h2>Voici la liste des plats de {{ state.stateDatas.nameCat }} :</h2>
+      <h2>Voici la liste des plats de :
+        <span class="cat"> {{ state.stateDatas.nameCat }}</span> </h2>
       <template v-for="mealsData in nameCat">
         <div class="box-meals-cat">
           <img class="imgMeals" :src="mealsData.strMealThumb">
@@ -46,11 +47,14 @@ watch(
   h2 {
     width: 100%;
     text-align: center;
-    color: var(--primary-2);
   }
 
   h3 {
     color: var(--gray-3);
+  }
+
+  .cat {
+    color: var(--danger-2);
   }
 
   .imgMeals {

@@ -1,5 +1,4 @@
 <template>
-  <body>
     <HeaderView @navigate="pageNavigate" :page="state.page" />
     <main>
       <aside v-if="state.page !== 'Meals'">
@@ -12,7 +11,6 @@
       </section>
     </main>
     <FooterView />
-  </body>
 </template>
 
 <script setup lang="ts">
