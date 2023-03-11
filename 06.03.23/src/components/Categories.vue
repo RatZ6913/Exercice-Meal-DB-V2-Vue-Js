@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, reactive, ref, watch, watchEffect } from 'vue';
+import { provide, reactive, watchEffect } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 import Category from './Category.vue';
 
@@ -28,12 +28,13 @@ export interface CategoriesInterface {
 const state = reactive<any>({
   display: false,
   category: [],
-  nameCat: ref()
+  nameCat: String
 })
 
 watchEffect(
   async () => {
     state.category = await fetchMealsCategory();
+    state.display = true;
   },
 ); 
 

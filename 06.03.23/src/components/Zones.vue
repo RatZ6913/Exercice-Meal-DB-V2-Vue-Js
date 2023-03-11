@@ -5,30 +5,44 @@
 
     <div id="box-cat">
       <template v-for="zone in state.zones.meals">
-        <button v-if="zone.strArea === 'Unknown' === false" 
+        <button @click="state.display = true" v-if="zone.strArea === 'Unknown' === false" 
         class="btn-cat m-10 btn btn-danger">{{ zone.strArea }}</button>
       </template>
+    </div>
+
+    <div>
+      <Zone v-if="state.display"/>
     </div>
   </section>
 </template>
 
 
 <script setup lang="ts">
-import { fetchMealsZones } from '@/services/meals.service';
+import { fetchMealsByCountry } from '@/services/meals.service';
 import { reactive } from 'vue';
+import Zone from './Zone.vue';
 
 const state = reactive<any>({
   zones: [],
+  nameZone: String,
+  display: false
 })
 
-const fetchZones = (async () => {
-  try {
-    state.zones = await fetchMealsZones();
-  } catch (error) {
-    console.log(error);
-  }
-  return;
-})();
+
+// const fetchZones = (async () => {
+//   try {
+//     state.zones = await fetchMealsZones();
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return;
+// })();
+
+// watch(
+//   async () => {
+
+//   }
+//   )
 
 </script>
 

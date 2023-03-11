@@ -12,16 +12,16 @@ export async function fetchMealsZones(): Promise<any> {
   return meals;
 }
 
-export async function fetchMealsByLetters(letter: string): Promise<any> {
+export async function fetchRandomMeal(): Promise<any> {
   const meals = await (
-    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+    await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
   ).json();
   return meals;
 }
 
-export async function fetchRandomMeal(): Promise<any> {
+export async function fetchMealsByLetters(letter: string): Promise<any> {
   const meals = await (
-    await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
   ).json();
   return meals;
 }
@@ -32,3 +32,11 @@ export async function fetchByCategory(category: string): Promise<any> {
   ).json();
   return meals;
 }
+
+export async function fetchMealsByCountry(country: string): Promise<any> {
+  const meals = await (
+    await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`)
+  ).json();
+  return meals;
+}
+
