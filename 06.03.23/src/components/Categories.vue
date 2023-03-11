@@ -21,7 +21,7 @@ import { provide, reactive, ref, watch, watchEffect } from 'vue';
 import { fetchMealsCategory } from '../services/meals.service';
 import Category from './Category.vue';
 
-export  interface CategoriesInterface {
+export interface CategoriesInterface {
   nameCat: string;
 }
 
@@ -31,9 +31,11 @@ const state = reactive<any>({
   nameCat: ref()
 })
 
-watchEffect(async () => {
-  state.category = await fetchMealsCategory();
-});
+watchEffect(
+  async () => {
+    state.category = await fetchMealsCategory();
+  },
+); 
 
 provide('state', state);
 
