@@ -16,7 +16,6 @@
   </section>
 </template>
 
-
 <script setup lang="ts">
 import { fetchZones } from '@/services/meals.service';
 import { provide, reactive, watchEffect } from 'vue';
@@ -80,6 +79,7 @@ provide('statezone', state);
       &:hover {
         color: var(--gray-1);
         background-color: var(--danger-1);
+        font-weight: 700;
       }
     }
   }

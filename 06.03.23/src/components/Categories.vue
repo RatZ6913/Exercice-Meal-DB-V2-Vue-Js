@@ -66,6 +66,22 @@ provide('stateCategories', state);
   .btn-cat {
     width: 250px;
     box-shadow: 1px 2px 1px var(--gray-1);
+
+    &:nth-child(odd){
+      background-color: var(--danger-1);
+    }
+    &:nth-child(even){
+      background-color: var(--danger-2);
+    }
+
+    &:last-child {
+      background-color: var(--danger-1);
+    }
+
+    &:hover {
+      background-color: var(--gray-3);
+      font-weight: 700;
+    }
   }
 }
 </style>

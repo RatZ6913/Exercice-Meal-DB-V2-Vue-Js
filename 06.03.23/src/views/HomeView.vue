@@ -133,15 +133,15 @@ async function random() {
   .float-enter-active,
   .text-enter-active,
   .title-enter-active {
-    transition: 2s;
+    transition: 1.5s;
   }
 
   .text-enter-active {
-    transition-delay: 1s;
+    transition-delay: 0.5s;
   }
 
   .float-enter-active {
-    transition-delay: 2s;
+    transition-delay: 1s;
   }
 }
 </style>
