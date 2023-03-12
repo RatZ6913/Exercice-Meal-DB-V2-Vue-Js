@@ -19,8 +19,8 @@
         <div id="ingredients">
           <h3>Ingredients / Measures :</h3>
           <div v-for="count in 20" :key="count" id="ingredients">
-            <p>
-              <span class="left">{{ meal[`strIngredient${count}`] }}</span>
+            <p v-if="meal[`strIngredient${count}`] !== null && meal[`strIngredient${count}`] !== ''">
+              <span class="left">{{ meal[`strIngredient${count}`] }} :</span>
               <span class="right">{{ meal[`strMeasure${count}`] }}</span>
             </p>
           </div>
@@ -57,6 +57,22 @@ const idMeal = props.idMeal();
 
 const getMealsById = async () => {
   state.mealsInfo = await fetchMealsById(idMeal);
+  console.log(state.mealsInfo.meals[0].strIngredient1);
+  console.log(state.mealsInfo.meals[0].strIngredient3);
+  console.log(state.mealsInfo.meals[0].strIngredient5);
+  console.log(state.mealsInfo.meals[0].strIngredient9);
+  console.log(state.mealsInfo.meals[0].strIngredient10);
+  console.log(state.mealsInfo.meals[0].strIngredient11);
+  console.log(state.mealsInfo.meals[0].strIngredient12);
+  console.log(state.mealsInfo.meals[0].strIngredient13);
+  console.log(state.mealsInfo.meals[0].strIngredient14);
+  console.log(state.mealsInfo.meals[0].strIngredient15);
+  console.log(state.mealsInfo.meals[0].strIngredient16);
+  console.log(state.mealsInfo.meals[0].strIngredient17);
+  console.log(state.mealsInfo.meals[0].strIngredient18);
+  console.log(state.mealsInfo.meals[0].strIngredient19);
+  console.log(state.mealsInfo.meals[0].strIngredient20);
+  
 }
 
 getMealsById();
@@ -129,7 +145,7 @@ const emit = defineEmits<{
     p {
       margin: 0;
       span {
-        margin: 10px;
+        margin: 2px;
       }
       .left {
         color: var(--primary-2);
