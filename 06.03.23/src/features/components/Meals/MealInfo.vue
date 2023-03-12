@@ -19,7 +19,7 @@
         </div>
 
         <Ingredients />
-        <Recipe :state.instructions = meal.strInstructions />
+        <Recipe :instructions = meal.strInstructions />
 
       </template>
     </template>
@@ -40,8 +40,7 @@ interface MealInfo {
 }
 
 const state = reactive({
-  mealsInfo: null as MealInfo | null,
-  instructions: String
+  mealsInfo: null as MealInfo | null
 })
 
 const props = defineProps<{
@@ -61,12 +60,6 @@ getMealsById();
 const emit = defineEmits<{
   (e: 'display', value: boolean): void;
 }>();
-
-// function instructions(): void {
-//    state.instructions;
-// }
-// console.log(instructions);
-
 
 </script>
 

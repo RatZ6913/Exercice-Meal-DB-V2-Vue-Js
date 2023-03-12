@@ -1,31 +1,37 @@
 <template>
+  <section id="instructions">
+    <h2>Voici les ingrédients</h2>
 
-  <h1>AFFICHAGE RECIPE</h1>
+    <p>{{ attrs.instructions }}</p>
 
-  {{ attrs.state }}
+  </section>
 </template>
-
-
-
-
 
 <script setup lang="ts">
 import { useAttrs } from 'vue';
 
-
-const props = defineProps<{
-  instructions?: string;
-}>();
-
-const instructions = props.instructions!;
-
 const attrs = useAttrs();
-
-
 
 </script>
 
+<style lang="scss" scoped>
 
+#instructions {
+  margin: 20px auto;
+  width: 50%;
+  h2 {
+    text-align: center;
+    color: var(--gray-3);
+  }
+  p {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 3px 2px 1px 1px var(--gray-3);
+    &:hover {
+      box-shadow: 3px 2px 1px 1px var(--primary-1);
+    }
+  }
+}
 
-
-<style lang="scss" scoped></style>
+</style>
