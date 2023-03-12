@@ -7,7 +7,7 @@
         <div id="box-main">
           <h2>Fiche technique de :<br> <span>{{ meal.strMeal }}</span></h2>
           <img v-if="meal.strMealThumb" :src="meal.strMealThumb" :alt="`image de ${meal.strMeal}`">
-          <p>{{ meal.strIngredient }}</p>
+          <p>{{ meal.strIngredient1 }}</p>
 
         </div>
 
@@ -23,7 +23,6 @@
 
       </template>
     </template>
-
   </section>
 </template>
 
@@ -46,7 +45,6 @@ const state = reactive({
 const props = defineProps<{
   display?: boolean;
   idMeal: Function;
-  instructions: string;
 }>();
 
 const idMeal = props.idMeal();

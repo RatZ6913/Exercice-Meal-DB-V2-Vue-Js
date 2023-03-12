@@ -1,6 +1,6 @@
 <template>
   <section id="instructions">
-    <h2>Voici les ingrédients</h2>
+    <h2>Voici la recette</h2>
 
     <p>{{ attrs.instructions }}</p>
 
