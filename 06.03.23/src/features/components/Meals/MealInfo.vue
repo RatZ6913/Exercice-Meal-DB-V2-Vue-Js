@@ -7,7 +7,6 @@
         <div id="box-main">
           <h2>Fiche technique de :<br> <span>{{ meal.strMeal }}</span></h2>
           <img v-if="meal.strMealThumb" :src="meal.strMealThumb" :alt="`image de ${meal.strMeal}`">
-          <p>{{ meal.strIngredient1 }}</p>
         </div>
 
         <div id="video-wrapper">
@@ -17,14 +16,16 @@
           </vue-plyr>
         </div>
 
-        
-        <div>
-          <h3>Ingredients</h3>
-          <p v-for="count in 20" :key="count" id="ingredients">{{ meal[`strIngredient${count}`] }}</p>
-          <p></p>
+        <div id="ingredients">
+          <h3>Ingredients / Measures :</h3>
+          <div v-for="count in 20" :key="count" id="ingredients">
+            <p>
+              <span class="left">{{ meal[`strIngredient${count}`] }}</span>
+              <span class="right">{{ meal[`strMeasure${count}`] }}</span>
+            </p>
+          </div>
         </div>
 
-        <Ingredients />
         <Recipe :instructions=meal.strInstructions />
 
       </template>
@@ -83,7 +84,6 @@ const emit = defineEmits<{
       color: var(--gray-3);
       text-align: center;
       margin: 20px auto;
-
       span {
         color: var(--primary-1);
         font-weight: 900;
@@ -99,7 +99,7 @@ const emit = defineEmits<{
   #video-wrapper {
     padding: 20px;
     align-self: center;
-    margin: auto;
+    margin: 20px auto;
     width: 50%;
     background-color: var(--white);
     border: 2px solid brown;
@@ -112,6 +112,31 @@ const emit = defineEmits<{
       font-weight: 700;
       margin-bottom: 10px;
       text-decoration: underline;
+    }
+  }
+
+  #ingredients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+
+    h3 {
+      color: brown;
+      margin-bottom: 20px;
+    }
+    p {
+      margin: 0;
+      span {
+        margin: 10px;
+      }
+      .left {
+        color: var(--primary-2);
+      }
+      .right {
+        color: var(--gray-3);
+      }
     }
   }
 }
