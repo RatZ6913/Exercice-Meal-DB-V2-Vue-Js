@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { provide, reactive, watchEffect } from 'vue';
-import { fetchMealsCategory } from '../services/meals.service';
+import { fetchMealsCategory } from '../../../services/meals.service';
 import Category from './Category.vue';
 
 export interface CategoriesInterface {

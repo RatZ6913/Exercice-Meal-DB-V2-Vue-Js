@@ -20,9 +20,9 @@ import HeaderView from './views/HeaderView.vue';
 import FooterView from './views/FooterView.vue';
 import HomeView from './views/HomeView.vue';
 import SearchMeals from './components/SearchMeals.vue';
-import Categories from './components/Categories.vue';
+import Categories from './features/components/Categories/Categories.vue';
 import Meals from './features/components/Meals/Meals.vue';
-import Zones from './components/Zones.vue';
+import Zones from './features/components/Zones/Zones.vue';
 import type { Page } from './interfaces/type';
 
 const state = reactive<{

@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { inject, reactive, watch } from 'vue';
-import { fetchByCategory } from '../services/meals.service';
+import { fetchByCategory } from '../../../services/meals.service';
 import type { CategoriesInterface } from './Categories.vue';
 
 const stateDatas = inject<CategoriesInterface>('stateCategories')!;
