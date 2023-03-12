@@ -1,18 +1,25 @@
 <template>
-  <div>
+    <button @click="emit('display', false)" class="btn btn-primary m-10">Retour</button>
+  <section>
     <h1>AFFICHAGE MEALINFOS</h1>
     <Ingredients />
     <Recipe />
-  </div>
+  </section>
 </template>
-
-
-
 
 
 <script setup lang="ts">
 import Ingredients from '@/features/components/Meals/Ingredients.vue';
 import Recipe from '@/features/components/Meals/Recipe.vue';
+
+const props = defineProps<{
+  display?: boolean
+}>();
+
+const emit = defineEmits<{
+  (e: 'display', value: boolean): void;
+}>();
+
 </script>
 
 

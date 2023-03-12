@@ -1,35 +1,34 @@
 <template>
-  <section v-if="state.display = false" id="container" class="mt-20">
-    <h1>Voici la liste des plats</h1>
-    <p>Quelles plats vous intéresse ? Faîtes votre choix</p>
-    <small>Les plats sont listés par lettres</small>
+    <section id="container" class="mt-20" v-if="!state.display" @display="display">
+      <h1>Voici la liste des plats</h1>
+      <p>Quelles plats vous intéresse ? Faîtes votre choix</p>
+      <small>Les plats sont listés par lettres</small>
 
-    <section id="box-meals">
-      <template v-for="letter in arrLetters">
-        <div class="box-by-letters m-20 d-flex justify-content-center flex-column align-items-center">
-          <h3>{{ letter }}</h3>
-          <ul>
-            <template v-for="getMealsByLetter in state.results">
-              <template v-for="mealByletter in getMealsByLetter">
-                <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
-                  <li class="nameMeals">
-                    {{ mealByletter.strMeal }}
-                    <small class="small-cat">({{ mealByletter.strCategory }})</small>
-                  </li>
+      <section id="box-meals">
+        <template v-for="letter in arrLetters">
+          <div class="box-by-letters m-20 d-flex justify-content-center flex-column align-items-center">
+            <h3>{{ letter }}</h3>
+            <ul>
+              <template v-for="getMealsByLetter in state.results">
+                <template v-for="mealByletter in getMealsByLetter">
+                  <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
+                    <li class="nameMeals" @click="state.display = true">
+                      {{ mealByletter.strMeal }}
+                      <small class="small-cat">({{ mealByletter.strCategory }})</small>
+                    </li>
+                  </template>
                 </template>
               </template>
-            </template>
-          </ul>
-        </div>
-      </template>
+            </ul>
+          </div>
+        </template>
+      </section>
     </section>
-  </section>
 
-  <section id="meal">
-    <MealInfo v-if="state.display = true"/>
-  </section> 
+    <section>
+      <MealInfo v-if="state.display" @display="display"/>
+    </section>
 </template>
-
 
 <script setup lang="ts">
 import { reactive, watchEffect } from 'vue';
@@ -59,6 +58,9 @@ watchEffect(() => {
   fetchMeals();
 });
 
+function display (value: boolean):void {
+  state.display = value;
+}
 
 </script>
 

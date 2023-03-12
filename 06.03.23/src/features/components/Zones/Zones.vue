@@ -5,7 +5,8 @@
 
     <div id="box-cat">
       <template v-for="zone in state.zones.meals">
-        <button @click="state.display = true; state.nameZone = zone.strArea" class="btn-cat m-10 btn btn-danger">{{
+        <button @click="state.display = true; state.nameZone = zone.strArea"
+          class="btn-cat m-10 btn btn-danger">{{
           zone.strArea }}</button>
       </template>
     </div>

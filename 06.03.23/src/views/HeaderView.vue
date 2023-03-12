@@ -38,7 +38,7 @@ defineProps<{
 
 const emit = defineEmits<{
     (e: 'navigate', page: Page): void;
-}>()
+}>();
 
 </script>
 
