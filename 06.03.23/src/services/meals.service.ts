@@ -40,7 +40,7 @@ export async function fetchMealsByCountry(country: string): Promise<any> {
   return meals;
 }
 
-export async function fetchMealsByName(idMeal: string | number): Promise<any> {
+export async function fetchMealsById(idMeal: string | number): Promise<any> {
   const meals = await (
     await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
   ).json();

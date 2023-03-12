@@ -6,10 +6,20 @@
 
     <template v-for="getMeals in state.mealsInfo">
       <template v-for="meal in getMeals">
+        <img v-if="meal.strMealThumb" :src="meal.strMealThumb" alt="">
+        <!-- <video controls :src="meal.strYoutube"></video> -->
+        <!-- <iframe :src="meal.strYoutube" frameborder="0" allowfullscreen></iframe> -->
 
-          <img v-if="meal.strMealThumb" :src="meal.strMealThumb" alt="">
+        <div class="video.wrapper">
+          <vue-plyr class="video-wrapper">
+            <div data-plyr-provider="youtube" 
+                 :data-plyr-embed-id="meal.strYoutube"
+                 ></div>
+          </vue-plyr>
+        </div>
+
         <p>{{ meal }}</p>
-    </template>
+      </template>
     </template>
     <Ingredients />
     <Recipe />
@@ -20,13 +30,13 @@
 <script setup lang="ts">
 import Ingredients from '@/features/components/Meals/Ingredients.vue';
 import Recipe from '@/features/components/Meals/Recipe.vue';
-import { fetchMealsByName } from '@/services/meals.service';
+import { fetchMealsById } from '@/services/meals.service';
 import { reactive } from 'vue';
 
 interface MealInfo {
-  strMeal: string;
+  strMeal: String;
   strMealThumb: Function;
-  strYoutube: string;
+  strYoutube: Function;
 }
 
 const state = reactive({
@@ -40,20 +50,21 @@ const props = defineProps<{
 
 const nameMeal = props.idMeal();
 
-console.log(nameMeal);
-
-const getMealsByName = async () => {
-  state.mealsInfo = await fetchMealsByName(nameMeal);
+const getMealsById = async () => {
+  state.mealsInfo = await fetchMealsById(nameMeal);
 }
 
-getMealsByName();
+getMealsById();
 
 const emit = defineEmits<{
   (e: 'display', value: boolean): void;
 }>();
-console.log(nameMeal);
 
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.video-wrapper {
+  width: 80%!important;
+}
+</style>
