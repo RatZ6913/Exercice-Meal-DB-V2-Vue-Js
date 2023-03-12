@@ -1,6 +1,6 @@
 <template>
   <button @click="emit('display', false)" class="btn btn-primary m-10">Retour vers les plats</button>
-  <section>
+  <section id="meal-container">
     <h1>AFFICHAGE MEALINFOS ( peut etre une vue seulement à voir )</h1>
     <p>{{ nameMeal }}</p>
 
@@ -10,11 +10,10 @@
         <!-- <video controls :src="meal.strYoutube"></video> -->
         <!-- <iframe :src="meal.strYoutube" frameborder="0" allowfullscreen></iframe> -->
 
-        <div class="video.wrapper">
+        <div id="video-wrapper">
+          <h2>Youtube Recipe</h2>
           <vue-plyr class="video-wrapper">
-            <div data-plyr-provider="youtube" 
-                 :data-plyr-embed-id="meal.strYoutube"
-                 ></div>
+            <div data-plyr-provider="youtube" :data-plyr-embed-id="meal.strYoutube"></div>
           </vue-plyr>
         </div>
 
@@ -64,7 +63,25 @@ const emit = defineEmits<{
 
 
 <style lang="scss" scoped>
-.video-wrapper {
-  width: 80%!important;
+#meal-container {
+  background-color: var(--gray-2);
+
+  h2 {
+    color: var(--danger-2);
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  #video-wrapper {
+    padding: 20px;
+    align-self: center;
+    margin: auto;
+    width: 50%;
+    background-color: var(--white);
+    border: 2px solid brown;
+    border-radius: 15px;
+    box-shadow: 2px 3px 2px 2px var(--gray-3);
+  }
 }
 </style>
