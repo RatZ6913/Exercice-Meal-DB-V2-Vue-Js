@@ -12,8 +12,8 @@
               <template v-for="getMealsByLetter in state.results">
                 <template v-for="mealByletter in getMealsByLetter">
                   <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
-                    <li class="nameMeals" @click="state.display = true; 
-                        state.nameMeal = mealByletter.strMeal">
+                    <li class="idMeals" @click="state.display = true; 
+                        state.idMeal = mealByletter.idMeal">
                       {{ mealByletter.strMeal }}
                       <small class="small-cat">({{ mealByletter.strCategory }})</small>
                     </li>
@@ -27,7 +27,7 @@
     </section>
 
     <section>
-      <MealInfo v-if="state.display" @display="display(Boolean())" :nameMeal="nameMeal"/>
+      <MealInfo v-if="state.display" @display="display(Boolean())" :idMeal="idMeal"/>
     </section>
 </template>
 
@@ -43,7 +43,7 @@ const state = reactive<any>({
   letters: arrLetters,
   results: [],
   display: false,
-  nameMeal: ''
+  idMeal: String
 })
 
 watchEffect(() => {
@@ -52,7 +52,7 @@ watchEffect(() => {
       for (const letter of state.letters) {
         state.mealsByLetter = await fetchMealsByLetters(letter);
         state.results.push(state.mealsByLetter.meals);
-        state.nameMeal;
+        state.idMeal;
       }
     } catch (error) {
       console.log(error);
@@ -65,8 +65,8 @@ function display (value: boolean): void {
   state.display = value;
 }
 
-function nameMeal(): string{
-  return state.nameMeal;
+function idMeal(): string {
+  return state.idMeal;
 }
 
 </script>
@@ -91,7 +91,7 @@ function nameMeal(): string{
     border: var(--border)
   }
 
-  .nameMeals {
+  .idMeals {
     text-align: center;
     color: var(--primary-1);
     cursor: pointer;
