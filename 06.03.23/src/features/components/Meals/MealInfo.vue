@@ -1,17 +1,16 @@
 <template>
   <button @click="emit('display', false)" class="btn btn-primary m-10">Retour vers les plats</button>
   <section id="meal-container">
-    <h1>AFFICHAGE MEALINFOS ( peut etre une vue seulement à voir )</h1>
-    <p>{{ nameMeal }}</p>
-
     <template v-for="getMeals in state.mealsInfo">
       <template v-for="meal in getMeals">
-        <img v-if="meal.strMealThumb" :src="meal.strMealThumb" alt="">
-        <!-- <video controls :src="meal.strYoutube"></video> -->
-        <!-- <iframe :src="meal.strYoutube" frameborder="0" allowfullscreen></iframe> -->
+
+        <div id="box-main">
+          <h2>Fiche technique de : <span>{{ meal.strMeal }}</span></h2>
+          <img v-if="meal.strMealThumb" :src="meal.strMealThumb" :alt="`image de ${meal.strMeal}`">
+        </div>
 
         <div id="video-wrapper">
-          <h2>Youtube Recipe</h2>
+          <h3>Youtube Recipe</h3>
           <vue-plyr class="video-wrapper">
             <div data-plyr-provider="youtube" :data-plyr-embed-id="meal.strYoutube"></div>
           </vue-plyr>
@@ -24,7 +23,6 @@
     <Recipe />
   </section>
 </template>
-
 
 <script setup lang="ts">
 import Ingredients from '@/features/components/Meals/Ingredients.vue';
@@ -47,10 +45,10 @@ const props = defineProps<{
   idMeal: Function;
 }>();
 
-const nameMeal = props.idMeal();
+const idMeal = props.idMeal();
 
 const getMealsById = async () => {
-  state.mealsInfo = await fetchMealsById(nameMeal);
+  state.mealsInfo = await fetchMealsById(idMeal);
 }
 
 getMealsById();
@@ -61,18 +59,31 @@ const emit = defineEmits<{
 
 </script>
 
-
 <style lang="scss" scoped>
 #meal-container {
   background-color: var(--gray-2);
 
-  h2 {
-    color: var(--danger-2);
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-decoration: underline;
+  #box-main {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 20%;
+    height: 20%;
+
+    h2 {
+      color: var(--gray-3);
+      text-align: center;
+      margin-top: 20px;
+
+      span {
+        color: var(--primary-1);
+        font-weight: 900;
+      }
+    }
   }
+
   #video-wrapper {
     padding: 20px;
     align-self: center;
@@ -81,7 +92,15 @@ const emit = defineEmits<{
     background-color: var(--white);
     border: 2px solid brown;
     border-radius: 15px;
-    box-shadow: 2px 3px 2px 2px var(--gray-3);
+    box-shadow: 2px 3px 2px 0px var(--gray-3);
+
+    h3 {
+      color: var(--danger-2);
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-decoration: underline;
+    }
   }
 }
 </style>
