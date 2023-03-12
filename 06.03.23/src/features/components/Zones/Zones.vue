@@ -5,10 +5,12 @@
 
     <div id="box-cat">
       <template v-for="zone in state.zones.meals">
-        <button @click="state.display = true; state.nameZone = zone.strArea"
+        <button @click="state.display = true; state.nameZone = zone.strArea; state.img = false"
           class="btn-cat m-10 btn btn-danger">{{
           zone.strArea }}</button>
       </template>
+    <img v-if="state.img" class="mb-20" src="@/assets/images/world.jpg" alt="">
+
     </div>
 
     <div>
@@ -26,6 +28,7 @@ const state = reactive<any>({
   display: false,
   zones: [],
   nameZone: String,
+  img: Boolean
 })
 
 watchEffect(

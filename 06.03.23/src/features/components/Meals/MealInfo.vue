@@ -57,22 +57,6 @@ const idMeal = props.idMeal();
 
 const getMealsById = async () => {
   state.mealsInfo = await fetchMealsById(idMeal);
-  console.log(state.mealsInfo.meals[0].strIngredient1);
-  console.log(state.mealsInfo.meals[0].strIngredient3);
-  console.log(state.mealsInfo.meals[0].strIngredient5);
-  console.log(state.mealsInfo.meals[0].strIngredient9);
-  console.log(state.mealsInfo.meals[0].strIngredient10);
-  console.log(state.mealsInfo.meals[0].strIngredient11);
-  console.log(state.mealsInfo.meals[0].strIngredient12);
-  console.log(state.mealsInfo.meals[0].strIngredient13);
-  console.log(state.mealsInfo.meals[0].strIngredient14);
-  console.log(state.mealsInfo.meals[0].strIngredient15);
-  console.log(state.mealsInfo.meals[0].strIngredient16);
-  console.log(state.mealsInfo.meals[0].strIngredient17);
-  console.log(state.mealsInfo.meals[0].strIngredient18);
-  console.log(state.mealsInfo.meals[0].strIngredient19);
-  console.log(state.mealsInfo.meals[0].strIngredient20);
-  
 }
 
 getMealsById();

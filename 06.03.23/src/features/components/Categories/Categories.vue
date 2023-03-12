@@ -5,13 +5,15 @@
 
     <div id="box-cat">
       <template v-for="category in state.category.meals">
-          <button @click="state.display = true; state.nameCat = category.strCategory "
+        <button @click="state.display = true; state.nameCat = category.strCategory; state.img = false"
           class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
       </template>
+    <img v-if="state.img" class="mb-20" src="@/assets/images/category.jpg" alt="">
+
     </div>
 
     <div>
-      <Category v-if="state.display"/>
+      <Category v-if="state.display" />
     </div>
   </section>
 </template>
@@ -28,7 +30,8 @@ export interface CategoriesInterface {
 const state = reactive<any>({
   display: false,
   category: [],
-  nameCat: String
+  nameCat: String,
+  img: Boolean
 })
 
 watchEffect(
@@ -36,7 +39,7 @@ watchEffect(
     state.category = await fetchMealsCategory();
     state.display = true;
   }
-); 
+);
 
 provide('stateCategories', state);
 </script>
@@ -66,10 +69,11 @@ provide('stateCategories', state);
     width: 250px;
     box-shadow: 1px 2px 1px var(--gray-1);
 
-    &:nth-child(odd){
+    &:nth-child(odd) {
       background-color: var(--danger-1);
     }
-    &:nth-child(even){
+
+    &:nth-child(even) {
       background-color: var(--danger-2);
     }
 
