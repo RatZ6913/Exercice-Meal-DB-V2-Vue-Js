@@ -8,7 +8,6 @@
           <h2>Fiche technique de :<br> <span>{{ meal.strMeal }}</span></h2>
           <img v-if="meal.strMealThumb" :src="meal.strMealThumb" :alt="`image de ${meal.strMeal}`">
           <p>{{ meal.strIngredient1 }}</p>
-
         </div>
 
         <div id="video-wrapper">
@@ -18,8 +17,15 @@
           </vue-plyr>
         </div>
 
+        
+        <div>
+          <h3>Ingredients</h3>
+          <p v-for="count in 20" :key="count" id="ingredients">{{ meal[`strIngredient${count}`] }}</p>
+          <p></p>
+        </div>
+
         <Ingredients />
-        <Recipe :instructions = meal.strInstructions />
+        <Recipe :instructions=meal.strInstructions />
 
       </template>
     </template>
@@ -27,7 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import Ingredients from '@/features/components/Meals/Ingredients.vue';
 import Recipe from '@/features/components/Meals/Recipe.vue';
 import { fetchMealsById } from '@/services/meals.service';
 import { reactive } from 'vue';
@@ -39,7 +44,7 @@ interface MealInfo {
 }
 
 const state = reactive({
-  mealsInfo: null as MealInfo | null
+  mealsInfo: null as MealInfo | null,
 })
 
 const props = defineProps<{
