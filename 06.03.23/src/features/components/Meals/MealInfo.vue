@@ -1,7 +1,7 @@
 <template>
     <button @click="emit('display', false)" class="btn btn-primary m-10">Retour</button>
   <section>
-    <h1>AFFICHAGE MEALINFOS</h1>
+    <h1>AFFICHAGE MEALINFOS ( peut etre une vue seulement à voir )</h1>
     <Ingredients />
     <Recipe />
   </section>
@@ -19,6 +19,9 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'display', value: boolean): void;
 }>();
+
+console.log(props);
+
 
 </script>
 
