@@ -1,16 +1,16 @@
 <template>
-    <HeaderView @navigate="pageNavigate" :page="state.page" />
-    <main>
-      <aside v-if="state.page !== 'Meals'">
-        <section id="searchContainer">
-          <SearchMeals />
-        </section>
-      </aside>
-      <section id="mainContent">
-        <Component :is="pages[state.page]"/> 
+  <HeaderView @navigate="pageNavigate" :page="state.page" />
+  <main>
+    <aside v-if="state.page !== 'Meals'">
+      <section id="searchContainer">
+        <SearchMeals />
       </section>
-    </main>
-    <FooterView />
+    </aside>
+    <section id="mainContent">
+        <Component :is="pages[state.page]" />
+    </section>
+  </main>
+  <FooterView />
 </template>
 
 <script setup lang="ts">
@@ -21,7 +21,7 @@ import FooterView from './views/FooterView.vue';
 import HomeView from './views/HomeView.vue';
 import SearchMeals from './components/SearchMeals.vue';
 import Categories from './components/Categories.vue';
-import Meals from './components/Meals.vue';
+import Meals from './features/components/Meals/Meals.vue';
 import Zones from './components/Zones.vue';
 import type { Page } from './interfaces/type';
 
@@ -31,7 +31,7 @@ const state = reactive<{
   page: 'HomeView'
 })
 
-const pages: {[s: string]: C;} = {
+const pages: { [s: string]: C; } = {
   HomeView,
   Categories,
   Zones,

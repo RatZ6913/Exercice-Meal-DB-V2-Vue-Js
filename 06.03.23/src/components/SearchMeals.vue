@@ -16,21 +16,12 @@ import { reactive, watch } from 'vue';
 import { fetchMealsByLetters } from '../services/meals.service';
 
 const state = reactive<any>({
-  search: null,
+  search: '',
   meals: [],
 })
 
-const fetchMealsByLetter = (async () => { 
-  try {
-    state.meals = await fetchMealsByLetters(state.search);
-  } catch (error) {
-    console.log(error);
-  }
-})();
-
 watch(() => state.search, async (letters) => {
-  let meals = await fetchMealsByLetters(letters);
-  state.meals = meals;
+  state.meals = await fetchMealsByLetters(letters);
 });
 
 </script>

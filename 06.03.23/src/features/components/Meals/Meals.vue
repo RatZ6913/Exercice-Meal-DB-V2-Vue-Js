@@ -1,5 +1,5 @@
 <template>
-  <section id="container" class="mt-20">
+  <section v-if="state.display = false" id="container" class="mt-20">
     <h1>Voici la liste des plats</h1>
     <p>Quelles plats vous intéresse ? Faîtes votre choix</p>
     <small>Les plats sont listés par lettres</small>
@@ -24,30 +24,41 @@
       </template>
     </section>
   </section>
+
+  <section id="meal">
+    <MealInfo v-if="state.display = true"/>
+  </section> 
 </template>
 
+
 <script setup lang="ts">
-import { reactive } from 'vue';
-import { fetchMealsByLetters } from '../services/meals.service';
+import { reactive, watchEffect } from 'vue';
+import { fetchMealsByLetters } from '../../../services/meals.service';
+import MealInfo from '@/features/components/Meals/MealInfo.vue';
 
 const arrLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 const state = reactive<any>({
   mealsByLetter: [],
   letters: arrLetters,
-  results: []
+  results: [],
+  display: false
 })
 
-const fetchMealsByLetter = (async () => {
-  try {
-    for (const letter of state.letters) {
-      state.mealsByLetter = await fetchMealsByLetters(letter);
-      state.results.push(state.mealsByLetter.meals);
+watchEffect(() => {
+  const fetchMeals = async () => {
+    try {
+      for (const letter of state.letters) {
+        state.mealsByLetter = await fetchMealsByLetters(letter);
+        state.results.push(state.mealsByLetter.meals);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-})();
+  fetchMeals();
+});
+
 
 </script>
 
