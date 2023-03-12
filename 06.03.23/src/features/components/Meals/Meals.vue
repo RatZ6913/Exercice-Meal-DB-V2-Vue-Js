@@ -7,12 +7,13 @@
       <section id="box-meals">
         <template v-for="letter in arrLetters">
           <div class="box-by-letters m-20 d-flex justify-content-center flex-column align-items-center">
-            <h3>{{ letter }}</h3>
+            <h3>{{ letter.toUpperCase() }}</h3>
             <ul>
               <template v-for="getMealsByLetter in state.results">
                 <template v-for="mealByletter in getMealsByLetter">
                   <template v-if="mealByletter.strMeal.charAt(0).toLowerCase() === letter">
-                    <li class="nameMeals" @click="state.display = true">
+                    <li class="nameMeals" @click="state.display = true; 
+                        state.nameMeal = mealByletter.strMeal">
                       {{ mealByletter.strMeal }}
                       <small class="small-cat">({{ mealByletter.strCategory }})</small>
                     </li>
@@ -26,7 +27,7 @@
     </section>
 
     <section>
-      <MealInfo v-if="state.display" @display="display"/>
+      <MealInfo v-if="state.display" @display="display(Boolean())" :nameMeal="nameMeal"/>
     </section>
 </template>
 
@@ -41,7 +42,8 @@ const state = reactive<any>({
   mealsByLetter: [],
   letters: arrLetters,
   results: [],
-  display: false
+  display: false,
+  nameMeal: ''
 })
 
 watchEffect(() => {
@@ -50,6 +52,7 @@ watchEffect(() => {
       for (const letter of state.letters) {
         state.mealsByLetter = await fetchMealsByLetters(letter);
         state.results.push(state.mealsByLetter.meals);
+        state.nameMeal;
       }
     } catch (error) {
       console.log(error);
@@ -58,8 +61,12 @@ watchEffect(() => {
   fetchMeals();
 });
 
-function display (value: boolean):void {
+function display (value: boolean): void {
   state.display = value;
+}
+
+function nameMeal(): string{
+  return state.nameMeal;
 }
 
 </script>

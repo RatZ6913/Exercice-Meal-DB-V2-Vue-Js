@@ -19,9 +19,9 @@ export async function fetchRandomMeal(): Promise<any> {
   return meals;
 }
 
-export async function fetchMealsByLetters(letter: string): Promise<any> {
+export async function fetchMealsByLetters(letters: string): Promise<any> {
   const meals = await (
-    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letters}`)
   ).json();
   return meals;
 }
@@ -40,3 +40,9 @@ export async function fetchMealsByCountry(country: string): Promise<any> {
   return meals;
 }
 
+export async function fetchMealsByName(name: string): Promise<any> {
+  const meals = await (
+    await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
+  ).json();
+  return meals;
+}
