@@ -5,8 +5,10 @@
       <template v-for="meal in getMeals">
 
         <div id="box-main">
-          <h2>Fiche technique de : <span>{{ meal.strMeal }}</span></h2>
+          <h2>Fiche technique de :<br> <span>{{ meal.strMeal }}</span></h2>
           <img v-if="meal.strMealThumb" :src="meal.strMealThumb" :alt="`image de ${meal.strMeal}`">
+          <p>{{ meal.strIngredient }}</p>
+
         </div>
 
         <div id="video-wrapper">
@@ -16,11 +18,12 @@
           </vue-plyr>
         </div>
 
-        <p>{{ meal }}</p>
+        <Ingredients />
+        <Recipe :state.instructions = meal.strInstructions />
+
       </template>
     </template>
-    <Ingredients />
-    <Recipe />
+
   </section>
 </template>
 
@@ -33,16 +36,18 @@ import { reactive } from 'vue';
 interface MealInfo {
   strMeal: String;
   strMealThumb: Function;
-  strYoutube: Function;
+  strYoutube: string;
 }
 
 const state = reactive({
-  mealsInfo: null as MealInfo | null
+  mealsInfo: null as MealInfo | null,
+  instructions: String
 })
 
 const props = defineProps<{
   display?: boolean;
   idMeal: Function;
+  instructions: string;
 }>();
 
 const idMeal = props.idMeal();
@@ -56,6 +61,12 @@ getMealsById();
 const emit = defineEmits<{
   (e: 'display', value: boolean): void;
 }>();
+
+// function instructions(): void {
+//    state.instructions;
+// }
+// console.log(instructions);
+
 
 </script>
 
@@ -75,12 +86,17 @@ const emit = defineEmits<{
     h2 {
       color: var(--gray-3);
       text-align: center;
-      margin-top: 20px;
+      margin: 20px auto;
 
       span {
         color: var(--primary-1);
         font-weight: 900;
       }
+    }
+
+    img {
+      padding: 20px;
+      background-color: white;
     }
   }
 
