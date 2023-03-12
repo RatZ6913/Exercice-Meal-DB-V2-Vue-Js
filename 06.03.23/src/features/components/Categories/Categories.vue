@@ -8,8 +8,7 @@
         <button @click="state.display = true; state.nameCat = category.strCategory; state.img = false"
           class="btn-cat m-10 btn btn-primary">{{ category.strCategory }}</button>
       </template>
-    <img v-if="state.img" class="mb-20" src="@/assets/images/category.jpg" alt="">
-
+      <img v-if="state.img" class="mb-20" src="@/assets/images/category.jpg">
     </div>
 
     <div>

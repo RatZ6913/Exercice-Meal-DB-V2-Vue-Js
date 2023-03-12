@@ -7,10 +7,9 @@
       <template v-for="zone in state.zones.meals">
         <button @click="state.display = true; state.nameZone = zone.strArea; state.img = false"
           class="btn-cat m-10 btn btn-danger">{{
-          zone.strArea }}</button>
+            zone.strArea }}</button>
       </template>
-    <img v-if="state.img" class="mb-20" src="@/assets/images/world.jpg" alt="">
-
+      <img v-if="state.img" class="mb-20" src="@/assets/images/world.jpg">
     </div>
 
     <div>
